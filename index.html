@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duy Chung - Software Solution Architect</title>
+    <link rel="stylesheet" href="https://unpkg.com/xterm@5.3.0/css/xterm.css" />
     <style>
         * {
             margin: 0;
@@ -70,34 +71,76 @@
             margin-bottom: 25px;
         }
 
-        .section-title {
-            font-size: 0.95em;
-            color: #1a1a1a;
-            margin-bottom: 10px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .skills-list {
-            list-style: none;
+        .terminal-section {
+            background: #1e1e1e;
+            border-radius: 8px;
+            padding: 0;
             margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            overflow: hidden;
         }
 
-        .skills-list li {
-            font-size: 0.95em;
-            line-height: 1.6;
-            color: #333;
-            margin-bottom: 10px;
-            padding-left: 20px;
-            position: relative;
+        .terminal-header {
+            background: #323233;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .skills-list li:before {
-            content: "—";
-            position: absolute;
-            left: 0;
-            color: #999;
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.red { background: #ff5f56; }
+        .terminal-dot.yellow { background: #ffbd2e; }
+        .terminal-dot.green { background: #27c93f; }
+
+        .terminal-title {
+            color: #ccc;
+            font-size: 12px;
+            margin-left: 10px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .terminal-body {
+            background: #1e1e1e;
+            padding: 20px;
+            font-family: 'Courier New', Consolas, Monaco, monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #d4d4d4;
+            min-height: 200px;
+            white-space: pre-wrap;
+        }
+
+        .terminal-prompt {
+            color: #4ec9b0;
+        }
+
+        .terminal-command {
+            color: #ce9178;
+        }
+
+        .terminal-output {
+            color: #d7ba7d;
+            margin-left: 0;
+        }
+
+        .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background: #4ec9b0;
+            animation: blink 1s infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
         }
 
         .contact-link {
@@ -179,13 +222,67 @@
             With 18+ years in software engineering, I architect and deliver end-to-end solutions that scale. From concept to production, I've built large-scale systems, multi-tenant SaaS platforms, and IoT ecosystems that power real-world applications.
         </div>
 
-        <div class="section-title">Expertise:</div>
-        <ul class="skills-list">
-            <li>Design and implement enterprise-grade architectures</li>
-            <li>Navigate the clouds – AWS, Azure, GCP – with senior DevOps expertise</li>
-            <li>Experiment with cutting-edge tech: AI/ML integrations, LLMs, and emerging technologies</li>
-            <li>Bridge the gap between infrastructure, development, and innovation</li>
-        </ul>
+        <div class="terminal-section">
+            <div class="terminal-header">
+                <div class="terminal-dot red"></div>
+                <div class="terminal-dot yellow"></div>
+                <div class="terminal-dot green"></div>
+                <div class="terminal-title">bash - expertise</div>
+            </div>
+            <div class="terminal-body" id="terminal"></div>
+        </div>
+
+        <script>
+            const terminal = document.getElementById('terminal');
+            const lines = [
+                { type: 'prompt', text: 'duy@portfolio:~$ ', delay: 100 },
+                { type: 'command', text: 'cat expertise.txt\n', delay: 800 },
+                { type: 'output', text: '✓ Design and implement enterprise-grade architectures\n', delay: 400 },
+                { type: 'output', text: '✓ Navigate the clouds – AWS, Azure, GCP – with senior DevOps expertise\n', delay: 400 },
+                { type: 'output', text: '✓ Experiment with cutting-edge tech: AI/ML integrations, LLMs, and emerging technologies\n', delay: 400 },
+                { type: 'output', text: '✓ Bridge the gap between infrastructure, development, and innovation\n', delay: 400 },
+                { type: 'prompt', text: 'duy@portfolio:~$ ', delay: 500 },
+                { type: 'cursor', text: '', delay: 0 }
+            ];
+
+            async function typeText(element, text, speed = 30) {
+                for (let char of text) {
+                    if (char === '\n') {
+                        element.appendChild(document.createElement('br'));
+                    } else {
+                        element.textContent += char;
+                    }
+                    await new Promise(resolve => setTimeout(resolve, speed));
+                }
+            }
+
+            async function displayTerminal() {
+                for (let line of lines) {
+                    await new Promise(resolve => setTimeout(resolve, line.delay));
+
+                    const span = document.createElement('span');
+
+                    if (line.type === 'prompt') {
+                        span.className = 'terminal-prompt';
+                        terminal.appendChild(span);
+                        await typeText(span, line.text, 50);
+                    } else if (line.type === 'command') {
+                        span.className = 'terminal-command';
+                        terminal.appendChild(span);
+                        await typeText(span, line.text, 80);
+                    } else if (line.type === 'output') {
+                        span.className = 'terminal-output';
+                        terminal.appendChild(span);
+                        await typeText(span, line.text, 20);
+                    } else if (line.type === 'cursor') {
+                        span.className = 'terminal-cursor';
+                        terminal.appendChild(span);
+                    }
+                }
+            }
+
+            displayTerminal();
+        </script>
 
         <div class="footer">
             When I'm not architecting solutions or optimizing deployments, you'll find me being a dad and exploring the next big thing in tech.

@@ -3,32 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Duy Chung - DevOps Engineer</title>
+    <title>Duy Chung - Software Solution Architect</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            line-height: 1.6;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        h1 { color: #333; }
-        .section { margin: 30px 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-weight: 400;
+            background: #ffffff;
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #333;
+            line-height: 1.5;
+            display: flex;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .profile-content {
+            flex: 1;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .tagline {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 0;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .bio {
+            font-size: 0.95em;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 0.95em;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .skills-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .skills-list li {
+            font-size: 0.95em;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .skills-list li:before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: #999;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0077b5;
+            text-decoration: none;
+            font-size: 0.95em;
+            margin-bottom: 20px;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-link:hover {
+            opacity: 0.7;
+        }
+
+        .linkedin-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer {
+            font-size: 0.9em;
+            color: #666;
+            padding-top: 0;
+            margin-top: 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 40px 20px;
+            }
+
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .tagline {
+                font-size: 1em;
+            }
+
+            .bio {
+                font-size: 1em;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>Welcome to My Page</h1>
-    <div class="section">
-        <h2>About Me</h2>
-        <p>DevOps Engineer specializing in cloud infrastructure and automation.</p>
-    </div>
-    <div class="section">
-        <h2>Skills</h2>
-        <ul>
-            <li>AWS, Azure, Kubernetes</li>
-            <li>Docker, CI/CD</li>
-            <li>Infrastructure as Code</li>
+    <div class="container">
+        <div class="profile-section">
+            <img src="img/profile.jpeg" alt="Duy Chung" class="profile-image">
+            <div class="profile-content">
+                <h1>Hi there, I'm Duy!</h1>
+                <div class="tagline">
+                    Software Solution Architect | DevOps Enthusiast | AI Explorer | Java Big Fan
+                </div>
+            </div>
+        </div>
+
+        <a href="https://www.linkedin.com/in/chung-khanh-duy-61914317/" target="_blank" rel="noopener noreferrer" class="contact-link">
+            <svg class="linkedin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0077b5">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            LinkedIn
+        </a>
+
+        <div class="bio">
+            With 18+ years in software engineering, I architect and deliver end-to-end solutions that scale. From concept to production, I've built large-scale systems, multi-tenant SaaS platforms, and IoT ecosystems that power real-world applications.
+        </div>
+
+        <div class="section-title">Expertise:</div>
+        <ul class="skills-list">
+            <li>Design and implement enterprise-grade architectures</li>
+            <li>Navigate the clouds – AWS, Azure, GCP – with senior DevOps expertise</li>
+            <li>Experiment with cutting-edge tech: AI/ML integrations, LLMs, and emerging technologies</li>
+            <li>Bridge the gap between infrastructure, development, and innovation</li>
         </ul>
+
+        <div class="footer">
+            When I'm not architecting solutions or optimizing deployments, you'll find me being a dad and exploring the next big thing in tech.
+        </div>
     </div>
 </body>
 </html>
